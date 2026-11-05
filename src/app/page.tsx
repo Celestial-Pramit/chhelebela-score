@@ -1,69 +1,154 @@
-import Image from "next/image";
+"use client";
+
+import { MotionConfig, motion } from "motion/react";
+import TvFrame from "@/components/shared/TvFrame";
+import ColorBars from "@/components/shared/ColorBars";
+import StickerButton from "@/components/shared/StickerButton";
+import { RickshawArch, PetalBand } from "@/components/shared/RickshawArch";
+import { Sticker, Cassette, EidCard, Marbles } from "@/components/shared/Objects";
+
+const STEPS = [
+  { n: "১", t: "টিক দাও", d: "যা যা তোমার ছেলেবেলায় ছিল" },
+  { n: "২", t: "স্কোর দেখো", d: "তুমি কত পার্সেন্ট ৯০-এর কিড" },
+  { n: "৩", t: "বন্ধুর সঙ্গে মেলাও", d: "কার ছেলেবেলা বেশি রঙিন?" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <MotionConfig reducedMotion="user">
+      <main className="paper min-h-screen overflow-x-clip">
+        {/* Masthead */}
+        <motion.header
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto flex max-w-6xl items-center justify-between border-b-4 border-double border-night px-5 py-3 font-display text-xs font-bold sm:text-sm"
+        >
+          <span>ছেলেবেলা চ্যানেল · সংখ্যা ০১</span>
+          <span>১৯৯০ – ২০০৯</span>
+        </motion.header>
+
+        <section className="mx-auto flex max-w-6xl flex-col items-center px-4 pb-14 pt-10 md:pt-14">
+          {/* Title */}
+          <h1 className="flex flex-wrap items-center justify-center gap-x-[0.3em] font-display text-[clamp(3rem,13vw,7.5rem)] font-extrabold leading-[1.3] text-night">
+            <motion.span
+              initial={{ opacity: 0, y: 36 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, type: "spring", stiffness: 110, damping: 14 }}
+            >
+              ছেলেবেলা
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 36, rotate: 0 }}
+              animate={{ opacity: 1, y: 0, rotate: -3 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 110, damping: 12 }}
+              className="inline-block rounded-[0.2em] border-[0.06em] border-night bg-hotpink px-[0.25em] text-[0.62em] leading-[1.2] text-night shadow-[0.07em_0.07em_0_#15152d]"
+            >
+              স্কোর
+            </motion.span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-night/70 sm:text-xs"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            A journey through our childhood memories.
+          </motion.p>
+
+          {/* Stage: arch + TV + objects */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+            className="relative mx-auto mt-6 w-[90%] max-w-[42rem] md:mt-8 md:w-full"
           >
-            Documentation
-          </a>
-        </div>
+            <RickshawArch className="pointer-events-none absolute left-1/2 top-0 z-0 h-[calc(100%+1rem)] w-[150%] -translate-x-1/2 md:aspect-[1000/500] md:h-auto md:w-[185%]" />
+
+            {/* Eid card tucked behind the TV */}
+            <Sticker
+              rotate={9}
+              delay={1.9}
+              className="absolute -right-[10%] top-[4%] z-[1] w-[26%] md:-right-[16%] md:top-[12%] md:w-[19%]"
+            >
+              <EidCard className="w-full" />
+            </Sticker>
+
+            <div className="relative z-10 pt-10 md:pt-14">
+              <TvFrame channel="০১" delay={1.3}>
+                <div className="relative flex h-full w-full flex-col items-center justify-center gap-1.5 bg-[radial-gradient(ellipse_at_50%_35%,#1d4a47_0%,#0d2523_80%)] px-[8%] text-center sm:gap-3">
+                  <p className="font-display text-[clamp(1.15rem,4.6vw,2.2rem)] font-extrabold leading-[1.3] text-balance text-marigold [text-shadow:0_0_14px_rgba(255,190,40,0.45)]">
+                    তুমি কত পার্সেন্ট <span className="whitespace-nowrap">৯০-এর</span> কিড?
+                  </p>
+                  <p className="text-[clamp(0.7rem,2.6vw,1.05rem)] leading-snug text-paper/85">
+                    চলো ফিরে যাই আমাদের সেই ছোটবেলায়...
+                  </p>
+                  <div className="absolute inset-x-[14%] bottom-[9%] h-1.5 overflow-hidden rounded-full opacity-80 sm:h-2">
+                    <ColorBars />
+                  </div>
+                </div>
+              </TvFrame>
+            </div>
+
+            {/* Cassette in front, bottom-left (both layouts) */}
+            <Sticker
+              rotate={-8}
+              delay={1.7}
+              className="absolute -left-[8%] bottom-[-3%] z-20 w-[34%] md:-left-[17%] md:bottom-[-3%] md:w-[28%]"
+            >
+              <Cassette className="w-full" />
+            </Sticker>
+
+            {/* Marbles: desktop only */}
+            <Sticker
+              rotate={6}
+              delay={2.1}
+              className="absolute -right-[14%] bottom-[-2%] z-20 hidden w-[24%] md:block"
+            >
+              <Marbles className="w-full" />
+            </Sticker>
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 0.5 }}
+            className="mt-12 flex flex-col items-center gap-4 md:mt-14"
+          >
+            <StickerButton tone="yellow" href="/quiz">
+              <span>ছোটবেলায় ফিরে চলো</span>
+              <motion.span
+                aria-hidden="true"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+              >
+                →
+              </motion.span>
+            </StickerButton>
+            <p className="text-xs font-medium text-night/70 sm:text-sm">
+              ২ মিনিটের টেস্ট · লগইন লাগবে না · ১০০+ স্মৃতি
+            </p>
+          </motion.div>
+
+          {/* How it works */}
+          <ol className="mt-14 grid w-full max-w-3xl grid-cols-1 gap-5 sm:grid-cols-3">
+            {STEPS.map((s) => (
+              <li key={s.n} className="flex items-start gap-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border-[3px] border-night bg-marigold font-display text-lg font-extrabold">
+                  {s.n}
+                </span>
+                <div>
+                  <p className="font-display text-lg font-bold leading-tight">{s.t}</p>
+                  <p className="text-sm leading-snug text-night/70">{s.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <PetalBand />
       </main>
-    </div>
+    </MotionConfig>
   );
 }
