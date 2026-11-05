@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chhelebela Score
 
-## Getting Started
+![Chhelebela Score landing page](docs/landing-preview.png)
 
-First, run the development server:
+**Chhelebela Score** is a Bangla-first nostalgia quiz about growing up in Bangladesh during the 1990s and 2000s. Explore seven memory channels, answer the cards that feel familiar, and get a playful childhood score.
+
+## What it includes
+
+- Seven themed channels with 90s and 2000s memories
+- Yes, skip, and untouched answers
+- Channel completion with safe confirmation for unanswered cards
+- Bangla scoring, era comparisons, and per-channel breakdowns
+- Persistent progress in versioned local storage
+- Result sharing through native share, WhatsApp, Facebook, or copy-to-clipboard
+- Responsive mobile and desktop layouts
+- Keyboard navigation and reduced-motion support
+- Accessible TV controls, dialogs, labels, focus handling, and status text
+
+## Run locally
+
+Requirements:
+
+- Node.js 20 or newer
+- npm
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev       # Start the development server
+npm run build     # Create a production build
+npm start         # Start the production server
+npm run lint      # Run ESLint
+npm test          # Run the Vitest suite
+npx tsc --noEmit  # Check TypeScript
+```
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+`NEXT_PUBLIC_SITE_URL` is optional. When provided, it is used as the metadata base URL for Open Graph and Twitter cards. On Vercel, `VERCEL_PROJECT_PRODUCTION_URL` is used as a fallback; local development defaults to `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The social preview image is expected at `public/og.png` with a recommended size of `1200×630`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scoring notes
 
-## Deploy on Vercel
+- Only completed channels contribute to the score.
+- Skipped memories are excluded from the denominator.
+- Untouched memories count as “not experienced.”
+- Memories shared by both eras contribute to both era percentages.
+- Era comparisons are shown only when enough eligible memories are available.
+- Results unlock after three completed channels.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js App Router
+- React and TypeScript
+- Tailwind CSS 4
+- Motion
+- Vitest
+- Canvas Confetti
+
+## License
+
+This project is currently intended as a personal project and does not yet include a separate license.
